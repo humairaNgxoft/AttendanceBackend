@@ -4,6 +4,7 @@ const cors = require("cors");
 
 global.__basedir = __dirname;
 const app = express();
+const attendaceRoutes = require('./app/routes/attendance.route')
 
 
 app.use((req, res, next) => {
@@ -94,6 +95,10 @@ app.get("/", (req, res) => {
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require("./app/routes/file.route")(app);
+require("./app/routes/attendance.route")(app);
+require("./app/routes/project.route")(app);
+require("./app/routes/task.route")(app);
+// app.use('/attendance',attendaceRoutes)
 
 
 // set port, listen for requests

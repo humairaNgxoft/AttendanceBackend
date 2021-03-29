@@ -22,3 +22,20 @@ const User = mongoose.model(
 );
 
 module.exports = User;
+
+// populate
+// relationship mongoose 
+
+
+
+
+// project
+// -name
+// -descirption
+// -creatorUserId
+// // -assignUser[ids]
+
+// task 
+// -name
+// -time 
+
