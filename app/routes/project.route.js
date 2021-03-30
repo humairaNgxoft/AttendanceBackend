@@ -5,6 +5,7 @@ module.exports = app => {
     router.get("/:id", controller.findOne)
     router.post("/", controller.projectCreate)
     router.delete("/:id", controller.projectDelete);
+    router.put("/:id", controller.projectUpdate);
     module.exports = router
     app.use('/api/project', router);
   };

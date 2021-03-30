@@ -77,3 +77,23 @@ exports.projectDelete = (req, res) => {
      });
  };
  
+ exports.projectUpdate = (req,res)=>{
+
+     
+  Projects.findByIdAndUpdate(
+    req.params.id,
+    { $set: req.body },
+    { new: true },
+    (err, attendeance) => {
+
+      if (err) {
+        error.message = "id not found"
+        return res.status(404).json(error)
+      }
+      console.log(attendeance)
+      res.json(attendeance);
+
+    }).catch(err => console.log(err))
+  
+  
+}

@@ -79,33 +79,23 @@ exports.attendanceCreate = (req,res)=>{
     //update
     exports.attendanceUpdate = (req,res)=>{
 
-      try {
-         if (!req.body.name && !req.body.estimatedWorkingHours && !req.body.userId) {
-           throw { message: 'Please enter the name,workinghours,userID.' };
-         }
-         else if (!req.body.name) {
-           throw { message: 'please enter the name of attendance.' };
-         }
-         else if (!req.body.estimatedWorkingHours) {
-           throw { message: 'please enter the workinghours of attendance.' };
-         }
-         else if (!req.body.userId) {
-            throw { message: 'please enter the id of user.' };
-          }
      
-       const id = req.params.id;
+      Attendance.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true },
+        (err, attendeance) => {
+    
+          if (err) {
+            error.message = "id not found"
+            return res.status(404).json(error)
+          }
+          console.log(attendeance)
+          res.json(attendeance);
+    
+        }).catch(err => console.log(err))
       
-       const data = Attendance.findByIdAndUpdate(id, req.body, { useFindAndModify: false });
-        
-           if (!data) {
-             res.status(404).send({
-               message
-             });
-           } else res.send({ message: "attendance was updated successfully." });
-         }
-         catch( {message}){
-           res.status(500).send({  message });
-         }
+      
    }
    
    
